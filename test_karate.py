@@ -35,9 +35,9 @@ models.append(LocallyLinearEmbedding(d=2))
 # node2vec takes embedding dimension (d),  maximum iterations (max_iter), random walk length (walk_len), number of random walks (num_walks), context size (con_size), return weight (ret_p), inout weight (inout_p) as inputs
 models.append(node2vec(d=2, max_iter=1, walk_len=80, num_walks=10, con_size=10, ret_p=1, inout_p=1))
 # SDNE takes embedding dimension (d), seen edge reconstruction weight (beta), first order proximity weight (alpha), lasso regularization coefficient (nu1), ridge regreesion coefficient (nu2), number of hidden layers (K), size of each layer (n_units), number of iterations (n_ite), learning rate (xeta), size of batch (n_batch), location of modelfile and weightfile save (modelfile and weightfile) as inputs
-models.append(SDNE(d=2, beta=5, alpha=1e-5, nu1=1e-6, nu2=1e-6, K=3, n_units=[50, 15,], n_iter=50, xeta=0.01, n_batch=500,
-                modelfile=['enc_model.json', 'dec_model.json'],
-                weightfile=['enc_weights.hdf5', 'dec_weights.hdf5']))
+# models.append(SDNE(d=2, beta=5, alpha=1e-5, nu1=1e-6, nu2=1e-6, K=3, n_units=[50, 15,], n_iter=50, xeta=0.01, n_batch=500,
+                # modelfile=['enc_model.json', 'dec_model.json'],
+                # weightfile=['enc_weights.hdf5', 'dec_weights.hdf5']))
 
 for embedding in models:
     print ('Num nodes: %d, num edges: %d' % (G.number_of_nodes(), G.number_of_edges()))
