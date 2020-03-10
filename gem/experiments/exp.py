@@ -81,11 +81,11 @@ def run_exps(MethObj, di_graph, data_set, node_labels, params):
 
 
 def call_exps(params, data_set):
-    print('Dataset: %s' % data_set)
+    # print('Dataset: %s' % data_set)
     model_hyp = json.load(
         open('gem/experiments/config/%s.conf' % data_set, 'r')
     )
-    if bool(params["node_labels"]):
+    if params["node_labels"] == True:
         f = open('gem/data/%s/node_labels.pickle' % data_set, 'rb')
         node_labels = pickle.load(f, encoding = 'latin1')
     else:
@@ -128,8 +128,9 @@ if __name__ == '__main__':
     parser.add_argument('-saveMAP', '--save_MAP',
                         help='save MAP in a latex table (default: False)')
 
-    params = json.load(open('gem/experiments/config/params.conf', 'r'))
+    params = json.load(open('gem/experiments/config/params1.conf', 'r'))
     args = vars(parser.parse_args())
+    # print("yoyo", params['node_labels'])
     for k, v in args.items():
         if v is not None:
             params[k] = v
@@ -137,6 +138,7 @@ if __name__ == '__main__':
     params["data_sets"] = params["data_sets"].split(',')
     params["rounds"] = int(params["rounds"])
     params["n_sample_nodes"] = int(params["n_sample_nodes"])
+    # print(params['is_undirected'])
     params["is_undirected"] = bool(int(params["is_undirected"]))
     if params["methods"] == "all":
         params["methods"] = methClassMap.keys()
@@ -147,5 +149,7 @@ if __name__ == '__main__':
         params["nc_test_ratio_arr"] = params["nc_test_ratio_arr"].split(',')
         params["nc_test_ratio_arr"] = \
             [float(ratio) for ratio in params["nc_test_ratio_arr"]]
+    
+    # print("yoyoyoyo", params['node_labels'])
     for data_set in params["data_sets"]:
         call_exps(params, data_set)

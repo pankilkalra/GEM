@@ -64,7 +64,15 @@ def evaluateStaticLinkPrediction(digraph, graph_embedding,
     )
     if node_l is None:
         node_l = list(range(train_digraph.number_of_nodes()))
-    filtered_edge_list = [e for e in predicted_edge_list if not train_digraph.has_edge(node_l(e[0]), node_l(e[1]))]
+    # print(node_l)
+    # print(predicted_edge_list)
+    # for e in predicted_edge_list:
+    #     print("yo", e[0], e[1])
+
+    # print("yoyoyo", type(train_digraph))
+    filtered_edge_list = [e for e in predicted_edge_list if not train_digraph.has_edge(e[0], e[1])]
+    # print("yo1", len(predicted_edge_list))
+    # print("yo2", len(filtered_edge_list))
 
     MAP = metrics.computeMAP(filtered_edge_list, test_digraph)
     prec_curv, _ = metrics.computePrecisionCurve(

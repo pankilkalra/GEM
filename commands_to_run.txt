@@ -1,0 +1,5 @@
+ python gem/experiments/exp.py -data sbm -dim 128 -meth sdne -exp gr,lp
+
+ python gem/experiments/exp.py -data karate -dim 2 -meth sdne -exp gr,lp 
+
+python gem/experiments/exp.py -data karate -dim 2 -meth all -exp gr,lp,viz,nc
