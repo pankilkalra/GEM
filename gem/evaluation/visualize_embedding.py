@@ -46,4 +46,3 @@ def expVis(X, res_pre, m_summ, node_labels=None, di_graph=None):
                 format='pdf', bbox_inches='tight')
     plt.show()
     plt.clf()
-    plt.figure()
