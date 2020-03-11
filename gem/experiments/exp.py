@@ -15,6 +15,7 @@ from gem.evaluation.evaluate_graph_reconstruction import expGR
 from gem.evaluation.evaluate_link_prediction import expLP
 from gem.evaluation.evaluate_node_classification import expNC
 from gem.evaluation.visualize_embedding import expVis
+from time import sleep
 
 methClassMap = {"gf": "GraphFactorization",
                 "hope": "HOPE",
@@ -72,7 +73,7 @@ def run_exps(MethObj, di_graph, data_set, node_labels, params):
                   m_summ)
     if "viz" in params["experiments"]:
         if MethObj.get_method_name() == 'hope_gsvd':
-            d = X.shape[1] / 2
+            d = int(X.shape[1] / 2)
             expVis(X[:, :d], res_pre, m_summ,
                    node_labels=node_labels, di_graph=di_graph)
         else:
@@ -97,7 +98,7 @@ def call_exps(params, data_set):
             importlib.import_module("gem.embedding.%s" % meth),
             methClassMap[meth]
         )
-        hyp = {"d": dim}
+        hyp = {"d": dim, 'data_set': data_set}
         hyp.update(model_hyp[meth])
         MethObj = MethClass(hyp)
         run_exps(MethObj, di_graph, data_set, node_labels, params)
@@ -142,6 +143,8 @@ if __name__ == '__main__':
     params["is_undirected"] = bool(int(params["is_undirected"]))
     if params["methods"] == "all":
         params["methods"] = methClassMap.keys()
+        print(params['methods'])
+        sleep(100)
     else:
         params["methods"] = params["methods"].split(',')
     params["dimensions"] = params["dimensions"].split(',')
