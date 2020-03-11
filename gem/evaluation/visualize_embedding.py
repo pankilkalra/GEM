@@ -44,4 +44,6 @@ def expVis(X, res_pre, m_summ, node_labels=None, di_graph=None):
                      di_graph=di_graph)
     plt.savefig('%s_%s_vis.pdf' % (res_pre, m_summ), dpi=300,
                 format='pdf', bbox_inches='tight')
+    plt.show()
+    plt.clf()
     plt.figure()
