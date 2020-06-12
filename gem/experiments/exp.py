@@ -129,7 +129,7 @@ if __name__ == '__main__':
     parser.add_argument('-saveMAP', '--save_MAP',
                         help='save MAP in a latex table (default: False)')
 
-    params = json.load(open('gem/experiments/config/params1.conf', 'r'))
+    params = json.load(open('gem/experiments/config/params2.conf', 'r'))
     args = vars(parser.parse_args())
     # print("yoyo", params['node_labels'])
     for k, v in args.items():

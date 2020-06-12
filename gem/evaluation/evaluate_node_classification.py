@@ -22,11 +22,8 @@ class TopKRanker(oneVr):
 
 
 def evaluateNodeClassification(X, Y, test_ratio):
-    X_train, X_test, Y_train, Y_test = sk_ms.train_test_split(
-        X,
-        Y,
-        test_size=test_ratio
-    )
+
+    X_train, X_test, Y_train, Y_test = sk_ms.train_test_split(X,Y,test_size=test_ratio)
     try:
         top_k_list = list(Y_test.toarray().sum(axis=1))
     except:

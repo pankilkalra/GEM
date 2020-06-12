@@ -1,10 +1,13 @@
+import os
+import matplotlib as mlp
+mlp.use('tkagg')
 import matplotlib.pyplot as plt
 import networkx as nx
 from sklearn.manifold import TSNE
-
 import sys
 sys.path.insert(0, './')
 from gem.utils import plot_util
+import os
 
 
 def plot_embedding2D(node_pos, node_colors=None, di_graph=None, labels=None):
@@ -35,7 +38,7 @@ def plot_embedding2D(node_pos, node_colors=None, di_graph=None, labels=None):
 
 
 def expVis(X, res_pre, m_summ, node_labels=None, di_graph=None):
-    print('\tGraph Visualization:')
+
     if node_labels:
         node_colors = plot_util.get_node_color(node_labels)
     else:
